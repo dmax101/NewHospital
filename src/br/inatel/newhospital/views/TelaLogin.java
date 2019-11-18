@@ -31,24 +31,53 @@ public class TelaLogin extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jtf_cpf = new javax.swing.JTextField();
         jtf_senha = new javax.swing.JTextField();
-        jb_entrar = new javax.swing.JButton();
-        jb_cadastrar = new javax.swing.JButton();
+        jl_entrar = new javax.swing.JLabel();
+        jl_cadastro = new javax.swing.JLabel();
+        jl_sair = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         Fundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jtf_cpf.setBorder(javax.swing.BorderFactory.createEmptyBorder(4, 4, 4, 4));
         jPanel1.add(jtf_cpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 360, 290, 30));
+
+        jtf_senha.setBorder(javax.swing.BorderFactory.createEmptyBorder(4, 4, 4, 4));
         jPanel1.add(jtf_senha, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 310, 290, 30));
 
-        jb_entrar.setBackground(new java.awt.Color(255, 255, 255));
-        jb_entrar.setText("CADASTRAR");
-        jPanel1.add(jb_entrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 420, 120, 40));
+        jl_entrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/inatel/newhospital/images/Entrar.png"))); // NOI18N
+        jPanel1.add(jl_entrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 430, 130, -1));
 
-        jb_cadastrar.setBackground(new java.awt.Color(255, 255, 255));
-        jb_cadastrar.setText("ENTRAR");
-        jb_cadastrar.setToolTipText("");
-        jPanel1.add(jb_cadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 420, 120, 40));
+        jl_cadastro.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
+        jl_cadastro.setForeground(new java.awt.Color(255, 255, 255));
+        jl_cadastro.setText("CRIAR NOVO ACESSO");
+        jl_cadastro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jl_cadastroMouseClicked(evt);
+            }
+        });
+        jPanel1.add(jl_cadastro, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 400, -1, -1));
+
+        jl_sair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/inatel/newhospital/images/Sair22.png"))); // NOI18N
+        jl_sair.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jl_sairMouseClicked(evt);
+            }
+        });
+        jPanel1.add(jl_sair, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 660, 40, 50));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Senha");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 370, -1, -1));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("CPF");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 320, -1, -1));
 
         Fundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/inatel/newhospital/images/Login.jpg"))); // NOI18N
         jPanel1.add(Fundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1080, 720));
@@ -66,6 +95,19 @@ public class TelaLogin extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jl_sairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_sairMouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_jl_sairMouseClicked
+
+    private void jl_cadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_cadastroMouseClicked
+        // TODO add your handling code here:
+        Cadastro screenCad = new Cadastro();
+
+        screenCad.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jl_cadastroMouseClicked
 
     /**
      * @param args the command line arguments
@@ -105,9 +147,12 @@ public class TelaLogin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Fundo;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JButton jb_cadastrar;
-    private javax.swing.JButton jb_entrar;
+    private javax.swing.JLabel jl_cadastro;
+    private javax.swing.JLabel jl_entrar;
+    private javax.swing.JLabel jl_sair;
     private javax.swing.JTextField jtf_cpf;
     private javax.swing.JTextField jtf_senha;
     // End of variables declaration//GEN-END:variables
