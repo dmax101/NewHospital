@@ -43,6 +43,7 @@ public class Cadastro extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        jl_voltar = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -91,7 +92,7 @@ public class Cadastro extends javax.swing.JFrame {
 
         jcb_cargo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jcb_cargo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enfermeiro(a)", "Médico(a)" }));
-        jPanel1.add(jcb_cargo, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 330, 140, -1));
+        jPanel1.add(jcb_cargo, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 330, 150, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -103,6 +104,14 @@ public class Cadastro extends javax.swing.JFrame {
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/inatel/newhospital/images/BotCriar.png"))); // NOI18N
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 580, 170, 70));
+
+        jl_voltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/inatel/newhospital/images/Sair22.png"))); // NOI18N
+        jl_voltar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jl_voltarMouseClicked(evt);
+            }
+        });
+        jPanel1.add(jl_voltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 670, 40, 40));
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/inatel/newhospital/images/Fundo.png"))); // NOI18N
@@ -121,6 +130,14 @@ public class Cadastro extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jl_voltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_voltarMouseClicked
+        // TODO add your handling code here:
+        TelaLogin screenLogin = new TelaLogin();
+
+        screenLogin.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jl_voltarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -169,6 +186,7 @@ public class Cadastro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JComboBox<String> jcb_cargo;
+    private javax.swing.JLabel jl_voltar;
     private javax.swing.JPasswordField jps_confSenha;
     private javax.swing.JPasswordField jpw_senha;
     private javax.swing.JTextField jtf_cpf;

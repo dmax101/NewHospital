@@ -33,7 +33,6 @@ public class TelaLogin extends javax.swing.JFrame {
         jtf_senha = new javax.swing.JTextField();
         jl_entrar = new javax.swing.JLabel();
         jl_cadastro = new javax.swing.JLabel();
-        jl_sair = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         Fundo = new javax.swing.JLabel();
@@ -61,14 +60,6 @@ public class TelaLogin extends javax.swing.JFrame {
         });
         jPanel1.add(jl_cadastro, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 400, -1, -1));
 
-        jl_sair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/inatel/newhospital/images/Sair22.png"))); // NOI18N
-        jl_sair.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jl_sairMouseClicked(evt);
-            }
-        });
-        jPanel1.add(jl_sair, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 660, 40, 50));
-
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Senha");
@@ -95,11 +86,6 @@ public class TelaLogin extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jl_sairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_sairMouseClicked
-        // TODO add your handling code here:
-        System.exit(0);
-    }//GEN-LAST:event_jl_sairMouseClicked
 
     private void jl_cadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_cadastroMouseClicked
         // TODO add your handling code here:
@@ -152,7 +138,6 @@ public class TelaLogin extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel jl_cadastro;
     private javax.swing.JLabel jl_entrar;
-    private javax.swing.JLabel jl_sair;
     private javax.swing.JTextField jtf_cpf;
     private javax.swing.JTextField jtf_senha;
     // End of variables declaration//GEN-END:variables
