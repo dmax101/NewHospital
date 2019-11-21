@@ -48,6 +48,11 @@ public class TelaLogin extends javax.swing.JFrame {
         jPanel1.add(jtf_senha, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 310, 290, 30));
 
         jl_entrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/inatel/newhospital/images/Entrar.png"))); // NOI18N
+        jl_entrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jl_entrarMouseClicked(evt);
+            }
+        });
         jPanel1.add(jl_entrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 430, 130, -1));
 
         jl_cadastro.setFont(new java.awt.Font("Tahoma", 1, 8)); // NOI18N
@@ -89,11 +94,19 @@ public class TelaLogin extends javax.swing.JFrame {
 
     private void jl_cadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_cadastroMouseClicked
         // TODO add your handling code here:
-        Cadastro screenCad = new Cadastro();
+        TelaCadastro screenCad = new TelaCadastro();
 
         screenCad.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jl_cadastroMouseClicked
+
+    private void jl_entrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_entrarMouseClicked
+        // TODO add your handling code here:
+        TelaMenu screenMenu = new TelaMenu();
+
+        screenMenu.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jl_entrarMouseClicked
 
     /**
      * @param args the command line arguments
