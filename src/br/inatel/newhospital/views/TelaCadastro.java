@@ -5,6 +5,11 @@
  */
 package br.inatel.newhospital.views;
 
+import br.inatel.newhospital.controller.MedicoDAO;
+import javax.swing.JOptionPane;
+import br.inatel.newhospital.models.Medico;
+import br.inatel.newhospital.models.Enfermeira;
+
 /**
  *
  * @author Leandro Pereira
@@ -61,6 +66,11 @@ public class TelaCadastro extends javax.swing.JFrame {
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 410, -1, -1));
 
         jtf_nome.setBorder(javax.swing.BorderFactory.createEmptyBorder(4, 4, 4, 4));
+        jtf_nome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtf_nomeActionPerformed(evt);
+            }
+        });
         jPanel1.add(jtf_nome, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 280, 300, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -103,6 +113,11 @@ public class TelaCadastro extends javax.swing.JFrame {
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 60, 390, 120));
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/inatel/newhospital/images/BotCriar.png"))); // NOI18N
+        jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel11MouseClicked(evt);
+            }
+        });
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 580, 170, 70));
 
         jl_voltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/inatel/newhospital/images/Sair22.png"))); // NOI18N
@@ -138,6 +153,47 @@ public class TelaCadastro extends javax.swing.JFrame {
         screenLogin.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jl_voltarMouseClicked
+
+    private void jtf_nomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_nomeActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jtf_nomeActionPerformed
+
+    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
+        // TODO add your handling code here:
+        if ("Médico(a)".equals(jcb_cargo.getSelectedItem().toString())) {
+            //Declaração de Objetos
+            Medico medico = new Medico();
+            MedicoDAO dao = new MedicoDAO();
+
+            //Declaração de Variaveis
+            boolean resultado;
+
+            //Atribuição de valores
+            if ((jtf_cpf.getText().length() > 10)&&(jtf_nome.getText().length()>5)&&(jpw_senha.getText().length()>5)) {
+
+                medico.setNome(jtf_nome.getText());
+                medico.setCpf(jtf_cpf.getText());
+                medico.setTelefone(jtf_telefone.getText());
+                medico.setSenha(jpw_senha.getText());
+
+                //Inserindo no Banco
+                resultado = dao.InsertMedicoaDAO(medico);
+
+                //IFs de variaveis booleanas para conferir o sucesso
+                if (resultado) {
+
+                    jtf_nome.setText(null);
+                    jtf_cpf.setText(null);
+                    jtf_telefone.setText(null);
+                    jpw_senha.setText(null);
+
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "CPF DEVE POSSUIR 11 DIGITOS E OS CAMPOS NOME E SENHA DEVEM SER PREENCHIDOS");
+            }
+        }
+    }//GEN-LAST:event_jLabel11MouseClicked
 
     /**
      * @param args the command line arguments

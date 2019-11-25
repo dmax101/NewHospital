@@ -29,7 +29,12 @@ public class TelaMenu extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        jb_esterilizacao = new javax.swing.JButton();
+        jb_registros = new javax.swing.JButton();
+        jb_caixas = new javax.swing.JButton();
+        jb_bandejas1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -37,12 +42,49 @@ public class TelaMenu extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setFont(new java.awt.Font("Corbel", 1, 18)); // NOI18N
-        jButton1.setText("REGISTROS");
-        jButton1.setToolTipText("");
-        jButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 200, 250, 50));
+        jb_esterilizacao.setBackground(new java.awt.Color(248, 248, 248));
+        jb_esterilizacao.setFont(new java.awt.Font("Corbel", 1, 18)); // NOI18N
+        jb_esterilizacao.setText("ESTERILIZAÇÃO");
+        jb_esterilizacao.setToolTipText("");
+        jb_esterilizacao.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel1.add(jb_esterilizacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 490, 250, 50));
+
+        jb_registros.setBackground(new java.awt.Color(248, 248, 248));
+        jb_registros.setFont(new java.awt.Font("Corbel", 1, 18)); // NOI18N
+        jb_registros.setText("REGISTROS");
+        jb_registros.setToolTipText("");
+        jb_registros.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jb_registros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_registrosActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jb_registros, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 240, 250, 50));
+
+        jb_caixas.setBackground(new java.awt.Color(248, 248, 248));
+        jb_caixas.setFont(new java.awt.Font("Corbel", 1, 18)); // NOI18N
+        jb_caixas.setText("CAIXAS");
+        jb_caixas.setToolTipText("");
+        jb_caixas.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel1.add(jb_caixas, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 350, 250, 50));
+
+        jb_bandejas1.setBackground(new java.awt.Color(248, 248, 248));
+        jb_bandejas1.setFont(new java.awt.Font("Corbel", 1, 18)); // NOI18N
+        jb_bandejas1.setText("BANDEJAS");
+        jb_bandejas1.setToolTipText("");
+        jb_bandejas1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel1.add(jb_bandejas1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 420, 250, 50));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/inatel/newhospital/images/Logo.png"))); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, 400, 170));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/inatel/newhospital/images/Sair22.png"))); // NOI18N
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 660, -1, 50));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/inatel/newhospital/images/Fundo.png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1080, 720));
@@ -60,6 +102,18 @@ public class TelaMenu extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jb_registrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_registrosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jb_registrosActionPerformed
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        // TODO add your handling code here:
+        TelaLogin screenLogin = new TelaLogin();
+
+        screenLogin.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel3MouseClicked
 
     /**
      * @param args the command line arguments
@@ -97,8 +151,13 @@ public class TelaMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton jb_bandejas1;
+    private javax.swing.JButton jb_caixas;
+    private javax.swing.JButton jb_esterilizacao;
+    private javax.swing.JButton jb_registros;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,30 +5,34 @@
  */
 package br.inatel.newhospital.controller;
 
-import br.inatel.newhospital.models.Enfermeira;
+import br.inatel.newhospital.models.Medico;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Leandro Pereira
  */
-public class EnfermeiraDAO {
-
-    public boolean InsertEnfermeiraDAO(Enfermeira e){
+public class MedicoDAO {
+    
+     public boolean InsertMedicoaDAO(Medico m){
         
         Connection con = ConnectionFactory.getConnection();
         
         PreparedStatement stmt = null;
 
         try {
-            stmt = con.prepareStatement("INSERT INTO Enfermeira (cpfEnf,senhaAcessoEnf,nomeEnf,telefoneEnf)VALUES(?,?,?,?)");
-            stmt.setString(1, e.getCpf());
-            stmt.setString(2, e.getSenha());
-            stmt.setString(3, e.getNome());
-            stmt.setString(4, e.getTelefone());
+            stmt = con.prepareStatement("INSERT INTO Medico (cpfMed,senhaAcessoMed,nomeMed,telefoneMed)VALUES(?,?,?,?)");
+            stmt.setString(1, m.getCpf());
+            stmt.setString(2, m.getSenha());
+            stmt.setString(3, m.getNome());
+            stmt.setString(4, m.getTelefone());
 
             stmt.executeUpdate();
 
@@ -37,13 +41,11 @@ public class EnfermeiraDAO {
             return true;
         } catch (SQLException ex) {
             System.out.println(ex);
-            System.out.println("Erro ao inserir");
         } finally {
             ConnectionFactory.closeConnection(con, stmt);
         }
         
         return true;
     }
-
     
 }
