@@ -29,8 +29,7 @@ public class TelaMenu extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jb_esterilizacao = new javax.swing.JButton();
-        jb_registros = new javax.swing.JButton();
+        jb_relatorios = new javax.swing.JButton();
         jb_caixas = new javax.swing.JButton();
         jb_bandejas = new javax.swing.JButton();
         jb_Cirurgias = new javax.swing.JButton();
@@ -43,30 +42,28 @@ public class TelaMenu extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jb_esterilizacao.setBackground(new java.awt.Color(248, 248, 248));
-        jb_esterilizacao.setFont(new java.awt.Font("Corbel", 1, 18)); // NOI18N
-        jb_esterilizacao.setText("ESTERILIZAÇÃO");
-        jb_esterilizacao.setToolTipText("");
-        jb_esterilizacao.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel1.add(jb_esterilizacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 490, 250, 50));
-
-        jb_registros.setBackground(new java.awt.Color(248, 248, 248));
-        jb_registros.setFont(new java.awt.Font("Corbel", 1, 18)); // NOI18N
-        jb_registros.setText("REGISTROS");
-        jb_registros.setToolTipText("");
-        jb_registros.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jb_registros.addActionListener(new java.awt.event.ActionListener() {
+        jb_relatorios.setBackground(new java.awt.Color(248, 248, 248));
+        jb_relatorios.setFont(new java.awt.Font("Corbel", 1, 18)); // NOI18N
+        jb_relatorios.setText("RELATÓRIOS");
+        jb_relatorios.setToolTipText("");
+        jb_relatorios.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jb_relatorios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jb_registrosActionPerformed(evt);
+                jb_relatoriosActionPerformed(evt);
             }
         });
-        jPanel1.add(jb_registros, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 240, 250, 50));
+        jPanel1.add(jb_relatorios, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 240, 250, 50));
 
         jb_caixas.setBackground(new java.awt.Color(248, 248, 248));
         jb_caixas.setFont(new java.awt.Font("Corbel", 1, 18)); // NOI18N
         jb_caixas.setText("CAIXAS");
         jb_caixas.setToolTipText("");
         jb_caixas.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jb_caixas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_caixasActionPerformed(evt);
+            }
+        });
         jPanel1.add(jb_caixas, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 350, 250, 50));
 
         jb_bandejas.setBackground(new java.awt.Color(248, 248, 248));
@@ -74,6 +71,11 @@ public class TelaMenu extends javax.swing.JFrame {
         jb_bandejas.setText("BANDEJAS");
         jb_bandejas.setToolTipText("");
         jb_bandejas.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jb_bandejas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_bandejasActionPerformed(evt);
+            }
+        });
         jPanel1.add(jb_bandejas, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 420, 250, 50));
 
         jb_Cirurgias.setBackground(new java.awt.Color(248, 248, 248));
@@ -81,7 +83,12 @@ public class TelaMenu extends javax.swing.JFrame {
         jb_Cirurgias.setText("CIRURGIAS");
         jb_Cirurgias.setToolTipText("");
         jb_Cirurgias.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel1.add(jb_Cirurgias, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 560, 250, 50));
+        jb_Cirurgias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jb_CirurgiasActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jb_Cirurgias, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 490, 250, 50));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/inatel/newhospital/images/Logo.png"))); // NOI18N
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, 400, 170));
@@ -111,9 +118,13 @@ public class TelaMenu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jb_registrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_registrosActionPerformed
+    private void jb_relatoriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_relatoriosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jb_registrosActionPerformed
+        TelaRelatorios screenRelatorios = new TelaRelatorios();
+
+        screenRelatorios.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jb_relatoriosActionPerformed
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         // TODO add your handling code here:
@@ -122,6 +133,30 @@ public class TelaMenu extends javax.swing.JFrame {
         screenLogin.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void jb_caixasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_caixasActionPerformed
+        // TODO add your handling code here:
+        TelaCaixa screenCaixa = new TelaCaixa();
+
+        screenCaixa.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jb_caixasActionPerformed
+
+    private void jb_bandejasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_bandejasActionPerformed
+        // TODO add your handling code here:
+        TelaBandejas screenBandejas = new TelaBandejas();
+
+        screenBandejas.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jb_bandejasActionPerformed
+
+    private void jb_CirurgiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jb_CirurgiasActionPerformed
+        // TODO add your handling code here:
+        TelaCirurgias screenCirurgias = new TelaCirurgias();
+
+        screenCirurgias.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jb_CirurgiasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -166,7 +201,6 @@ public class TelaMenu extends javax.swing.JFrame {
     private javax.swing.JButton jb_Cirurgias;
     private javax.swing.JButton jb_bandejas;
     private javax.swing.JButton jb_caixas;
-    private javax.swing.JButton jb_esterilizacao;
-    private javax.swing.JButton jb_registros;
+    private javax.swing.JButton jb_relatorios;
     // End of variables declaration//GEN-END:variables
 }
