@@ -32,7 +32,8 @@ public class TelaMenu extends javax.swing.JFrame {
         jb_esterilizacao = new javax.swing.JButton();
         jb_registros = new javax.swing.JButton();
         jb_caixas = new javax.swing.JButton();
-        jb_bandejas1 = new javax.swing.JButton();
+        jb_bandejas = new javax.swing.JButton();
+        jb_Cirurgias = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -68,12 +69,19 @@ public class TelaMenu extends javax.swing.JFrame {
         jb_caixas.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel1.add(jb_caixas, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 350, 250, 50));
 
-        jb_bandejas1.setBackground(new java.awt.Color(248, 248, 248));
-        jb_bandejas1.setFont(new java.awt.Font("Corbel", 1, 18)); // NOI18N
-        jb_bandejas1.setText("BANDEJAS");
-        jb_bandejas1.setToolTipText("");
-        jb_bandejas1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel1.add(jb_bandejas1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 420, 250, 50));
+        jb_bandejas.setBackground(new java.awt.Color(248, 248, 248));
+        jb_bandejas.setFont(new java.awt.Font("Corbel", 1, 18)); // NOI18N
+        jb_bandejas.setText("BANDEJAS");
+        jb_bandejas.setToolTipText("");
+        jb_bandejas.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel1.add(jb_bandejas, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 420, 250, 50));
+
+        jb_Cirurgias.setBackground(new java.awt.Color(248, 248, 248));
+        jb_Cirurgias.setFont(new java.awt.Font("Corbel", 1, 18)); // NOI18N
+        jb_Cirurgias.setText("CIRURGIAS");
+        jb_Cirurgias.setToolTipText("");
+        jb_Cirurgias.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel1.add(jb_Cirurgias, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 560, 250, 50));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/inatel/newhospital/images/Logo.png"))); // NOI18N
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, 400, 170));
@@ -155,7 +163,8 @@ public class TelaMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JButton jb_bandejas1;
+    private javax.swing.JButton jb_Cirurgias;
+    private javax.swing.JButton jb_bandejas;
     private javax.swing.JButton jb_caixas;
     private javax.swing.JButton jb_esterilizacao;
     private javax.swing.JButton jb_registros;

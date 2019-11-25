@@ -5,7 +5,7 @@
  */
 package br.inatel.newhospital.controller;
 
-import br.inatel.newhospital.models.Caixa;
+import br.inatel.newhospital.models.Cirurgia;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
  *
  * @author Leandro Pereira
  */
-public class CaixaDAO {
+public class CirurgiaDAO {
     
     // objeto responsável pela conexão com o servidor do banco de dados
     Connection con;
@@ -31,7 +31,7 @@ public class CaixaDAO {
     ResultSet rs;
 
     // NOME DO BANCO DE DADOS
-    String database = "NewHospital";
+    String database = "newhospital";
     // URL: VERIFICAR QUAL A PORTA
     String url = "jdbc:mysql://localhost:3306/" + database + "?useTimezone=true&serverTimezone=UTC&useSSL=false";
     // USUÁRIO
@@ -56,18 +56,20 @@ public class CaixaDAO {
                 
     }
     
-    public boolean inserirCaixa(Caixa novoUsuario) 
+    public boolean inserirEnfermeira(Cirurgia novoUsuario) 
     {
         connectToDb(); //Conecta ao banco de dados
         //Comando em SQL:
-        String sql = "INSERT INTO usuario (idCaixa,descricaoCaixa,empresaCaixa) values (?,?,?)";
+        String sql = "INSERT INTO Cirurgia (idCirurgia,nomePaciente,dataCir,Medico,obsCir) values (?,?,?,?,?)";
         //O comando recebe paramêtros -> consulta dinâmica (pst)
         try 
         {
             pst = con.prepareStatement(sql);
             pst.setInt(1, novoUsuario.getId());     //1- refere-se à primeira interrogação
-            pst.setString(2, novoUsuario.getDescricao());   //2- refere-se à segunda interrogação
-            pst.setString(3, novoUsuario.getEmpresa()); 
+            pst.setString(2, novoUsuario.getNomePaciente());   //2- refere-se à segunda interrogação
+            pst.setString(3, novoUsuario.getDataCir()); 
+            pst.setString(4, novoUsuario.getMedico());  
+            pst.setString(5, novoUsuario.getObs());  
                                                         //e assim por diante....
             pst.execute();
             JOptionPane.showMessageDialog(null, "Salvo com sucesso!");
@@ -93,23 +95,23 @@ public class CaixaDAO {
         return sucesso;
     }
     
-    public ArrayList<Caixa> buscarCaixaSemFiltro() 
+    public ArrayList<Cirurgia> buscarCirurgiaSemFiltro() 
     {
-        ArrayList<Caixa> listaDeCaixas = new ArrayList<>();
+        ArrayList<Cirurgia> listaDeCirurgias = new ArrayList<>();
         connectToDb();
         //Comando em SQL:
-        String sql = "SELECT * FROM Caixa";
+        String sql = "SELECT * FROM Cirurgia";
         //O comando NÃO recebe parâmetros -> consulta estática (st)
         try 
         {
             st = con.createStatement();
             rs = st.executeQuery(sql); //ref. a tabela resultante da busca
-            System.out.println("Lista de Caixas: ");
+            System.out.println("Lista de Cirurgias: ");
             while(rs.next())
             {
-                Caixa usuarioTemp = new Caixa();
-                JOptionPane.showMessageDialog(null, "Id: " + usuarioTemp.getId() + "\nDescrição: " + usuarioTemp.getDescricao() + "\nEmpresa: " + usuarioTemp.getEmpresa());
-                listaDeCaixas.add(usuarioTemp);
+                Cirurgia usuarioTemp = new Cirurgia();
+                JOptionPane.showMessageDialog(null, "Id: " + usuarioTemp.getId() + "\nPaciente: " + usuarioTemp.getNomePaciente() + "\nData: " + usuarioTemp.getDataCir());
+                listaDeCirurgias.add(usuarioTemp);
             }
             sucesso = true;
         } 
@@ -128,19 +130,19 @@ public class CaixaDAO {
                 System.out.println("Erro = " + ex.getMessage());
             }
         }
-        return listaDeCaixas;
+        return listaDeCirurgias;
     }
     
-    public boolean atualizarCaixa(int id, String novoNome) 
+    public boolean atualizarCirurgia(int id, String novaData) 
     {
         connectToDb();
         //Comando em SQL
-        String sql = "UPDATE Enfermeira SET descricaoCaixa=? WHERE id=?";
+        String sql = "UPDATE Enfermeira SET dataCir=? WHERE id=?";
          //O comando recebe paramêtros -> consulta dinâmica (pst)
         try 
         {
             pst = con.prepareStatement(sql);
-            pst.setString(1, novoNome);
+            pst.setString(1, novaData);
             pst.setInt(2, id);
             pst.execute();
             sucesso = true;
@@ -166,11 +168,11 @@ public class CaixaDAO {
         return sucesso;
     }
 
-    public boolean deletarCaixa(int id) 
+    public boolean deletarCirurgia(int id) 
     {
         connectToDb();
         //Comando em SQL:
-        String sql = "DELETE FROM Caixa WHERE id=?";
+        String sql = "DELETE FROM Cirurgia WHERE id=?";
         try 
         {
             pst = con.prepareStatement(sql);

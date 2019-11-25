@@ -5,9 +5,8 @@
  */
 package br.inatel.newhospital.views;
 
-import br.inatel.newhospital.controller.MedicoDAO;
+import br.inatel.newhospital.controller.EnfermeiraDAO;
 import javax.swing.JOptionPane;
-import br.inatel.newhospital.models.Medico;
 import br.inatel.newhospital.models.Enfermeira;
 
 /**
@@ -38,13 +37,11 @@ public class TelaCadastro extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jtf_nome = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jtf_telefone = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jps_confSenha = new javax.swing.JPasswordField();
         jtf_cpf = new javax.swing.JTextField();
         jpw_senha = new javax.swing.JPasswordField();
-        jcb_cargo = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -78,11 +75,6 @@ public class TelaCadastro extends javax.swing.JFrame {
         jLabel4.setText("Telefone");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 260, -1, -1));
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Cargo");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 310, -1, -1));
-
         jtf_telefone.setBorder(javax.swing.BorderFactory.createEmptyBorder(4, 4, 4, 4));
         jPanel1.add(jtf_telefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 280, 150, -1));
 
@@ -99,10 +91,6 @@ public class TelaCadastro extends javax.swing.JFrame {
 
         jpw_senha.setBorder(javax.swing.BorderFactory.createEmptyBorder(4, 4, 4, 4));
         jPanel1.add(jpw_senha, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 430, 150, -1));
-
-        jcb_cargo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jcb_cargo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enfermeiro(a)", "Médico(a)" }));
-        jPanel1.add(jcb_cargo, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 330, 150, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -161,37 +149,33 @@ public class TelaCadastro extends javax.swing.JFrame {
 
     private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
         // TODO add your handling code here:
-        if ("Médico(a)".equals(jcb_cargo.getSelectedItem().toString())) {
-            //Declaração de Objetos
-            Medico medico = new Medico();
-            MedicoDAO dao = new MedicoDAO();
+        //Declaração de Objetos
+        Enfermeira e = new Enfermeira();
+        EnfermeiraDAO dao = new EnfermeiraDAO();
 
-            //Declaração de Variaveis
-            boolean resultado;
+        //Declaração de Variaveis
+        boolean resultado;
 
-            //Atribuição de valores
-            if ((jtf_cpf.getText().length() > 10)&&(jtf_nome.getText().length()>5)&&(jpw_senha.getText().length()>5)) {
+        //Atribuição de valores
+        if ((jtf_cpf.getText().length() == 11) && (jtf_nome.getText() != "")) {
+            
+            e.setNome(jtf_nome.getText());
+            e.setCpf(jtf_cpf.getText());
+            e.setTelefone(jtf_telefone.getText());
 
-                medico.setNome(jtf_nome.getText());
-                medico.setCpf(jtf_cpf.getText());
-                medico.setTelefone(jtf_telefone.getText());
-                medico.setSenha(jpw_senha.getText());
+            //Inserindo no Banco
+            resultado = dao.inserirEnfermeira(e);
 
-                //Inserindo no Banco
-                resultado = dao.InsertMedicoaDAO(medico);
+            //IFs de variaveis booleanas para conferir o sucesso
+            if (resultado) {
+                jtf_nome.setText(null);
+                jtf_cpf.setText(null);
+                jtf_telefone.setText(null);
+                jpw_senha.setText(null);
 
-                //IFs de variaveis booleanas para conferir o sucesso
-                if (resultado) {
-
-                    jtf_nome.setText(null);
-                    jtf_cpf.setText(null);
-                    jtf_telefone.setText(null);
-                    jpw_senha.setText(null);
-
-                }
-            } else {
-                JOptionPane.showMessageDialog(null, "CPF DEVE POSSUIR 11 DIGITOS E OS CAMPOS NOME E SENHA DEVEM SER PREENCHIDOS");
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "CPF DEVE POSSUIR 11 DIGITOS E OS CAMPOS NOME E SENHA DEVEM SER PREENCHIDOS");
         }
     }//GEN-LAST:event_jLabel11MouseClicked
 
@@ -237,12 +221,10 @@ public class TelaCadastro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JComboBox<String> jcb_cargo;
     private javax.swing.JLabel jl_voltar;
     private javax.swing.JPasswordField jps_confSenha;
     private javax.swing.JPasswordField jpw_senha;

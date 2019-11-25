@@ -5,7 +5,7 @@
  */
 package br.inatel.newhospital.controller;
 
-import br.inatel.newhospital.models.Caixa;
+import br.inatel.newhospital.models.Bandeja;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
  *
  * @author Leandro Pereira
  */
-public class CaixaDAO {
+public class BandejaDAO {
     
     // objeto responsável pela conexão com o servidor do banco de dados
     Connection con;
@@ -56,18 +56,17 @@ public class CaixaDAO {
                 
     }
     
-    public boolean inserirCaixa(Caixa novoUsuario) 
+    public boolean inserirBandeja(Bandeja novoUsuario) 
     {
         connectToDb(); //Conecta ao banco de dados
         //Comando em SQL:
-        String sql = "INSERT INTO usuario (idCaixa,descricaoCaixa,empresaCaixa) values (?,?,?)";
+        String sql = "INSERT INTO Bandeja (idBandeja,statusEsterilizacao) values (?,?)";
         //O comando recebe paramêtros -> consulta dinâmica (pst)
         try 
         {
             pst = con.prepareStatement(sql);
             pst.setInt(1, novoUsuario.getId());     //1- refere-se à primeira interrogação
-            pst.setString(2, novoUsuario.getDescricao());   //2- refere-se à segunda interrogação
-            pst.setString(3, novoUsuario.getEmpresa()); 
+            pst.setString(2, novoUsuario.getStatusEsterilizacao());   //2- refere-se à segunda interrogação
                                                         //e assim por diante....
             pst.execute();
             JOptionPane.showMessageDialog(null, "Salvo com sucesso!");
@@ -93,23 +92,25 @@ public class CaixaDAO {
         return sucesso;
     }
     
-    public ArrayList<Caixa> buscarCaixaSemFiltro() 
+    public ArrayList<Bandeja> buscarEnfermeiraSemFiltro() 
     {
-        ArrayList<Caixa> listaDeCaixas = new ArrayList<>();
+        ArrayList<Bandeja> listaDeEnfermeiras = new ArrayList<>();
         connectToDb();
         //Comando em SQL:
-        String sql = "SELECT * FROM Caixa";
+        String sql = "SELECT * FROM Bandeja";
         //O comando NÃO recebe parâmetros -> consulta estática (st)
         try 
         {
             st = con.createStatement();
             rs = st.executeQuery(sql); //ref. a tabela resultante da busca
-            System.out.println("Lista de Caixas: ");
+            System.out.println("Lista de Bandejas: ");
             while(rs.next())
             {
-                Caixa usuarioTemp = new Caixa();
-                JOptionPane.showMessageDialog(null, "Id: " + usuarioTemp.getId() + "\nDescrição: " + usuarioTemp.getDescricao() + "\nEmpresa: " + usuarioTemp.getEmpresa());
-                listaDeCaixas.add(usuarioTemp);
+                Bandeja usuarioTemp = new Bandeja();
+                System.out.println("Id = "+usuarioTemp.getId());
+                System.out.println("Status = "+usuarioTemp.getStatusEsterilizacao());
+                System.out.println("---------------------------------");
+                listaDeEnfermeiras.add(usuarioTemp);
             }
             sucesso = true;
         } 
@@ -128,14 +129,14 @@ public class CaixaDAO {
                 System.out.println("Erro = " + ex.getMessage());
             }
         }
-        return listaDeCaixas;
+        return listaDeEnfermeiras;
     }
     
-    public boolean atualizarCaixa(int id, String novoNome) 
+    public boolean atualizarBandeja(int id, String novoNome) 
     {
         connectToDb();
         //Comando em SQL
-        String sql = "UPDATE Enfermeira SET descricaoCaixa=? WHERE id=?";
+        String sql = "UPDATE Bandeja SET statusEsterilizacao=? WHERE id=?";
          //O comando recebe paramêtros -> consulta dinâmica (pst)
         try 
         {
@@ -166,11 +167,11 @@ public class CaixaDAO {
         return sucesso;
     }
 
-    public boolean deletarCaixa(int id) 
+    public boolean deletarBandeja(int id) 
     {
         connectToDb();
         //Comando em SQL:
-        String sql = "DELETE FROM Caixa WHERE id=?";
+        String sql = "DELETE FROM Bandeja WHERE id=?";
         try 
         {
             pst = con.prepareStatement(sql);
