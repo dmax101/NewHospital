@@ -5,6 +5,10 @@
  */
 package br.inatel.newhospital.views;
 
+import br.inatel.newhospital.controller.EnfermeiraDAO;
+import javax.swing.JOptionPane;
+import br.inatel.newhospital.models.Enfermeira;
+
 /**
  *
  * @author Leandro Pereira
@@ -33,13 +37,9 @@ public class TelaCadastro extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jtf_nome = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jtf_telefone = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jps_confSenha = new javax.swing.JPasswordField();
         jtf_cpf = new javax.swing.JTextField();
         jpw_senha = new javax.swing.JPasswordField();
-        jcb_cargo = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -61,6 +61,11 @@ public class TelaCadastro extends javax.swing.JFrame {
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 410, -1, -1));
 
         jtf_nome.setBorder(javax.swing.BorderFactory.createEmptyBorder(4, 4, 4, 4));
+        jtf_nome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtf_nomeActionPerformed(evt);
+            }
+        });
         jPanel1.add(jtf_nome, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 280, 300, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -68,31 +73,14 @@ public class TelaCadastro extends javax.swing.JFrame {
         jLabel4.setText("Telefone");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 260, -1, -1));
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Cargo");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 310, -1, -1));
-
         jtf_telefone.setBorder(javax.swing.BorderFactory.createEmptyBorder(4, 4, 4, 4));
         jPanel1.add(jtf_telefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 280, 150, -1));
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Confirmação de Senha");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 460, -1, -1));
-
-        jps_confSenha.setBorder(javax.swing.BorderFactory.createEmptyBorder(4, 4, 4, 4));
-        jPanel1.add(jps_confSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 480, 150, -1));
 
         jtf_cpf.setBorder(javax.swing.BorderFactory.createEmptyBorder(4, 4, 4, 4));
         jPanel1.add(jtf_cpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 330, 150, -1));
 
         jpw_senha.setBorder(javax.swing.BorderFactory.createEmptyBorder(4, 4, 4, 4));
         jPanel1.add(jpw_senha, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 430, 150, -1));
-
-        jcb_cargo.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jcb_cargo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enfermeiro(a)", "Médico(a)" }));
-        jPanel1.add(jcb_cargo, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 330, 150, -1));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -103,6 +91,11 @@ public class TelaCadastro extends javax.swing.JFrame {
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 60, 390, 120));
 
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/inatel/newhospital/images/BotCriar.png"))); // NOI18N
+        jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel11MouseClicked(evt);
+            }
+        });
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 580, 170, 70));
 
         jl_voltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/inatel/newhospital/images/Sair22.png"))); // NOI18N
@@ -139,6 +132,44 @@ public class TelaCadastro extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jl_voltarMouseClicked
 
+    private void jtf_nomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_nomeActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jtf_nomeActionPerformed
+
+    private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
+        // TODO add your handling code here:
+        //Declaração de Objetos
+        Enfermeira e = new Enfermeira();
+        EnfermeiraDAO dao = new EnfermeiraDAO();
+
+        //Declaração de Variaveis
+        boolean resultado;
+
+        //Atribuição de valores
+        if ((jtf_cpf.getText().length() == 11) && (jtf_nome.getText() != null) && (jpw_senha.getText() != null)) {
+
+            e.setNome(jtf_nome.getText());
+            e.setCpf(jtf_cpf.getText());
+            e.setTelefone(jtf_telefone.getText());
+            e.setSenha(jpw_senha.getText());
+
+            //Inserindo no Banco
+            resultado = dao.inserirEnfermeira(e);
+
+            //IFs de variaveis booleanas para conferir o sucesso
+            if (resultado) {
+                jtf_nome.setText(null);
+                jtf_cpf.setText(null);
+                jtf_telefone.setText(null);
+                jpw_senha.setText(null);
+
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "CPF deve pussuir 11 digitos e Nome deve ser preenchido");
+        }
+    }//GEN-LAST:event_jLabel11MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -153,16 +184,24 @@ public class TelaCadastro extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCadastro.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCadastro.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCadastro.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCadastro.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -181,14 +220,10 @@ public class TelaCadastro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JComboBox<String> jcb_cargo;
     private javax.swing.JLabel jl_voltar;
-    private javax.swing.JPasswordField jps_confSenha;
     private javax.swing.JPasswordField jpw_senha;
     private javax.swing.JTextField jtf_cpf;
     private javax.swing.JTextField jtf_nome;

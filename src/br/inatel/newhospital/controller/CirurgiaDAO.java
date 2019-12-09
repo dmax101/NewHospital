@@ -5,7 +5,7 @@
  */
 package br.inatel.newhospital.controller;
 
-import br.inatel.newhospital.models.Enfermeira;
+import br.inatel.newhospital.models.Cirurgia;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -19,8 +19,8 @@ import javax.swing.JOptionPane;
  *
  * @author Leandro Pereira
  */
-public class EnfermeiraDAO {
-
+public class CirurgiaDAO {
+    
     // objeto responsável pela conexão com o servidor do banco de dados
     Connection con;
     // objeto responsável por preparar as consultas dinâmicas
@@ -31,7 +31,7 @@ public class EnfermeiraDAO {
     ResultSet rs;
 
     // NOME DO BANCO DE DADOS
-    String database = "NewHospital";
+    String database = "newhospital";
     // URL: VERIFICAR QUAL A PORTA
     String url = "jdbc:mysql://localhost:3306/" + database + "?useTimezone=true&serverTimezone=UTC&useSSL=false";
     // USUÁRIO
@@ -56,19 +56,20 @@ public class EnfermeiraDAO {
                 
     }
     
-    public boolean inserirEnfermeira(Enfermeira novoUsuario) 
+    public boolean inserirEnfermeira(Cirurgia novoUsuario) 
     {
         connectToDb(); //Conecta ao banco de dados
         //Comando em SQL:
-        String sql = "INSERT INTO usuario (cpfEnf,senhaAcessoEnf,nomeEnf,telefoneEnf) values (?,?,?,?)";
+        String sql = "INSERT INTO Cirurgia (idCirurgia,nomePaciente,dataCir,Medico,obsCir) values (?,?,?,?,?)";
         //O comando recebe paramêtros -> consulta dinâmica (pst)
         try 
         {
             pst = con.prepareStatement(sql);
-            pst.setString(1, novoUsuario.getCpf());     //1- refere-se à primeira interrogação
-            pst.setString(2, novoUsuario.getSenha());   //2- refere-se à segunda interrogação
-            pst.setString(3, novoUsuario.getNome()); 
-            pst.setString(4, novoUsuario.getTelefone());  
+            pst.setInt(1, novoUsuario.getId());     //1- refere-se à primeira interrogação
+            pst.setString(2, novoUsuario.getNomePaciente());   //2- refere-se à segunda interrogação
+            pst.setString(3, novoUsuario.getDataCir()); 
+            pst.setString(4, novoUsuario.getMedico());  
+            pst.setString(5, novoUsuario.getObs());  
                                                         //e assim por diante....
             pst.execute();
             JOptionPane.showMessageDialog(null, "Salvo com sucesso!");
@@ -94,25 +95,23 @@ public class EnfermeiraDAO {
         return sucesso;
     }
     
-    public ArrayList<Enfermeira> buscarEnfermeiraSemFiltro() 
+    public ArrayList<Cirurgia> buscarCirurgiaSemFiltro() 
     {
-        ArrayList<Enfermeira> listaDeEnfermeiras = new ArrayList<>();
+        ArrayList<Cirurgia> listaDeCirurgias = new ArrayList<>();
         connectToDb();
         //Comando em SQL:
-        String sql = "SELECT * FROM Enfermeira";
+        String sql = "SELECT * FROM Cirurgia";
         //O comando NÃO recebe parâmetros -> consulta estática (st)
         try 
         {
             st = con.createStatement();
             rs = st.executeQuery(sql); //ref. a tabela resultante da busca
-            System.out.println("Lista de Enfermeiras: ");
+            System.out.println("Lista de Cirurgias: ");
             while(rs.next())
             {
-                Enfermeira usuarioTemp = new Enfermeira();
-                System.out.println("Nome = "+usuarioTemp.getNome());
-                System.out.println("CPF = "+usuarioTemp.getCpf());
-                System.out.println("---------------------------------");
-                listaDeEnfermeiras.add(usuarioTemp);
+                Cirurgia usuarioTemp = new Cirurgia();
+                JOptionPane.showMessageDialog(null, "Id: " + usuarioTemp.getId() + "\nPaciente: " + usuarioTemp.getNomePaciente() + "\nData: " + usuarioTemp.getDataCir());
+                listaDeCirurgias.add(usuarioTemp);
             }
             sucesso = true;
         } 
@@ -131,19 +130,19 @@ public class EnfermeiraDAO {
                 System.out.println("Erro = " + ex.getMessage());
             }
         }
-        return listaDeEnfermeiras;
+        return listaDeCirurgias;
     }
     
-    public boolean atualizarNomeEnfermeira(int id, String novoNome) 
+    public boolean atualizarCirurgia(int id, String novaData) 
     {
         connectToDb();
         //Comando em SQL
-        String sql = "UPDATE Enfermeira SET nome=? WHERE id=?";
+        String sql = "UPDATE Enfermeira SET dataCir=? WHERE id=?";
          //O comando recebe paramêtros -> consulta dinâmica (pst)
         try 
         {
             pst = con.prepareStatement(sql);
-            pst.setString(1, novoNome);
+            pst.setString(1, novaData);
             pst.setInt(2, id);
             pst.execute();
             sucesso = true;
@@ -169,11 +168,11 @@ public class EnfermeiraDAO {
         return sucesso;
     }
 
-    public boolean deletarEnfermeira(int id) 
+    public boolean deletarCirurgia(int id) 
     {
         connectToDb();
         //Comando em SQL:
-        String sql = "DELETE FROM Enfermeira WHERE id=?";
+        String sql = "DELETE FROM Cirurgia WHERE id=?";
         try 
         {
             pst = con.prepareStatement(sql);

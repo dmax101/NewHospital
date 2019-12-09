@@ -11,16 +11,16 @@ package br.inatel.newhospital.models;
  */
 public abstract class Funcionario {
     
-    private int cpf;
+    private String cpf;
     private String senha;
     private String nome;
     private String telefone;
 
-    public int getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(int cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 

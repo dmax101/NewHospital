@@ -5,6 +5,10 @@
  */
 package br.inatel.newhospital.views;
 
+import br.inatel.newhospital.controller.EnfermeiraDAO;
+import br.inatel.newhospital.models.Enfermeira;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Leandro Pereira
@@ -30,10 +34,10 @@ public class TelaLogin extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jtf_cpf = new javax.swing.JTextField();
-        jtf_senha = new javax.swing.JTextField();
         jl_entrar = new javax.swing.JLabel();
         jl_cadastro = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jPasswordField1 = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
         Fundo = new javax.swing.JLabel();
 
@@ -42,10 +46,12 @@ public class TelaLogin extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jtf_cpf.setBorder(javax.swing.BorderFactory.createEmptyBorder(4, 4, 4, 4));
-        jPanel1.add(jtf_cpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 360, 290, 30));
-
-        jtf_senha.setBorder(javax.swing.BorderFactory.createEmptyBorder(4, 4, 4, 4));
-        jPanel1.add(jtf_senha, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 310, 290, 30));
+        jtf_cpf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtf_cpfActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jtf_cpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 320, 290, 30));
 
         jl_entrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/inatel/newhospital/images/Entrar.png"))); // NOI18N
         jl_entrar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -69,6 +75,9 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Senha");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 370, -1, -1));
+
+        jPasswordField1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel1.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 360, 290, 30));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -102,11 +111,22 @@ public class TelaLogin extends javax.swing.JFrame {
 
     private void jl_entrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl_entrarMouseClicked
         // TODO add your handling code here:
-        TelaMenu screenMenu = new TelaMenu();
 
-        screenMenu.setVisible(true);
-        this.dispose();
+        if (("root".equals(jtf_cpf.getText())) && ("root".equals(jPasswordField1.getText()))) {
+            TelaMenu screenMenu = new TelaMenu();
+
+            screenMenu.setVisible(true);
+            this.dispose();
+        }else{
+            JOptionPane.showMessageDialog(null, "CPF e/ou Senha incorreta.");
+        }
+
+
     }//GEN-LAST:event_jl_entrarMouseClicked
+
+    private void jtf_cpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtf_cpfActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtf_cpfActionPerformed
 
     /**
      * @param args the command line arguments
@@ -149,9 +169,10 @@ public class TelaLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JLabel jl_cadastro;
     private javax.swing.JLabel jl_entrar;
     private javax.swing.JTextField jtf_cpf;
-    private javax.swing.JTextField jtf_senha;
     // End of variables declaration//GEN-END:variables
+
 }
